@@ -1,11 +1,18 @@
 import React from 'react';
+import style from "../sideBar.module.css"
+import {SbItemInterface} from "./SbItemInterface";
 
-const SideBarItem = () => {
+const SideBarItem = (props: SbItemInterface) => {
     return (
-        <li>
-            <div>
-                <img src="" alt={'avatar'}/>
+        <li className={style.sideBarItem}>
+            <div className={style.sideBarItemTop}>
+                <div>{props.name}</div>
+                <div>{props.time}</div>
             </div>
+            <div className={style.sideBarItemBottom}>
+                {props.message}
+            </div>
+
         </li>
     );
 };

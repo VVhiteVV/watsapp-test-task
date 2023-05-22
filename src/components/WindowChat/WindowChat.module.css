@@ -1,0 +1,21 @@
+.windowChat{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.windowField{
+    display: flex;
+    gap: 10px;
+    width: 80%;
+    margin: 0 auto;
+}
+.windowMessage{
+    width: 100%;
+    padding: 30px;
+    height: 80%;
+    background-color: gray;
+}
+.windowTextArea{
+    width: 100%;
+    height: 80px;
+}

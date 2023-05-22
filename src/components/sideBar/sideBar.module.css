@@ -1,0 +1,21 @@
+.sidebar{
+    max-width: 500px;
+    min-height: 100vh;
+    background-color:white;
+}
+.sideBarItem{
+    display: grid;
+    gap: 10px;
+    width: 100%;
+    height: 72px;
+    border-bottom: 1px solid gray;
+    padding: 10px;
+}
+.sideBarItem:hover{
+    background-color: azure;
+    cursor: pointer;
+}
+.sideBarItemTop{
+    display: flex;
+    justify-content: space-between;
+}
