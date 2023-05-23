@@ -3,19 +3,19 @@ import {axiosBaseQuery} from "./axiosBaseQuery";
 
 
 export const chatApi = createApi({
-    reducerPath: 'pokemonApi',
+    reducerPath: 'chatApi',
     baseQuery: axiosBaseQuery({
-        baseUrl: 'https://example.com',
+        baseUrl: 'https://api.green-api.com/waInstance1101823545/',
     }),
     endpoints: (builder) => ({
-        getPokemonByName: builder.query({
+        sendMessage: builder.query({
             query: () => ({
-                url: '',
-                method:'POST'
+                url: 'receiveNotiication/4f517c58557b498a9b17bfeecc698bd034eada0f37364b848d',
+                method:'GET',
             }),
         }),
     }),
 })
 
 
-export const { useGetPokemonByNameQuery } = chatApi
+export const { useSendMessageQuery } = chatApi

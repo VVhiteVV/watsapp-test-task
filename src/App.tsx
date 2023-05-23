@@ -1,13 +1,11 @@
 import React from 'react';
-import "./global.css"
-import SideBarList from "./components/sideBar/SideBarList";
-import WindowChat from "./components/WindowChat/WindowChat";
+import "./global.module.css"
+
 function App() {
 
   return (
     <div className="App">
-        <SideBarList/>
-        <WindowChat/>
+
     </div>
   );
 }

@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+    height: 95%;
+
 }
 .windowField{
     display: flex;
@@ -12,8 +14,9 @@
 .windowMessage{
     width: 100%;
     padding: 30px;
-    height: 80%;
+    height: 100%;
     background-color: gray;
+ 
 }
 .windowTextArea{
     width: 100%;

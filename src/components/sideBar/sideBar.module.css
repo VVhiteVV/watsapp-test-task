@@ -2,6 +2,7 @@
     max-width: 500px;
     min-height: 100vh;
     background-color:white;
+    border-right: 1px solid gray;
 }
 .sideBarItem{
     display: grid;
