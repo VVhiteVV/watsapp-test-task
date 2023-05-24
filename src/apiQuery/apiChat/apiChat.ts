@@ -14,6 +14,13 @@ export const chatApi = createApi({
                 url: `waInstance${localStorage.getItem('idInstance')}/receiveNotification/${localStorage.getItem('apiKey')}`,
                 method:'GET',
             }),
+
+        }),
+        deleteQueue: builder.mutation({
+            query: (id) => ({
+                url: `waInstance${localStorage.getItem('idInstance')}/deleteNotification/${localStorage.getItem('apiKey')}/${id}`,
+                method: "DELETE",
+            }),
         }),
         sendMessage: builder.mutation({
             query: (data) => ({
@@ -58,4 +65,11 @@ export const chatApi = createApi({
 
 //1101823545
 //4f517c58557b498a9b17bfeecc698bd034eada0f37364b848d
-export const { useGetMessageQuery, useGetStatusInstanceMutation, useSendMessageMutation,useCreateChatMutation, useGetChatHistoryQuery} = chatApi
+export const {
+    useGetMessageQuery,
+    useGetStatusInstanceMutation,
+    useSendMessageMutation,
+    useCreateChatMutation,
+    useGetChatHistoryQuery,
+    useDeleteQueueMutation
+} = chatApi
