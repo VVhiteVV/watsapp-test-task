@@ -1,18 +1,21 @@
-import React from 'react';
+import React, {FC} from 'react';
 import style from "../sideBar.module.css"
 import {SbItemInterface} from "./SbItemInterface";
+import {Link} from "react-router-dom";
 
-const SideBarItem = (props: SbItemInterface) => {
+
+const SideBarItem: FC<SbItemInterface> = (props) => {
     return (
         <li className={style.sideBarItem}>
-            <div className={style.sideBarItemTop}>
-                <div>{props.name}</div>
-                <div>{props.time}</div>
-            </div>
-            <div className={style.sideBarItemBottom}>
-                {props.message}
-            </div>
-
+            <Link to={`/messages/${props.name}`}>
+                <div className={style.sideBarItemTop}>
+                    <div>{props.name}</div>
+                    <div>{props.time}</div>
+                </div>
+                <div className={style.sideBarItemBottom}>
+                    {props.message}
+                </div>
+            </Link>
         </li>
     );
 };

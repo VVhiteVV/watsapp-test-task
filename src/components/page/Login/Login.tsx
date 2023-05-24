@@ -1,16 +1,17 @@
-import React, {useState, useEffect, FC, JSX} from 'react';
+import React, {useState, FC} from 'react';
 import style from "./login.module.css";
 import {DataResponse, ErrorResponse, LoginInterface} from "./LoginInterface";
 import Input from "../../ui/input";
 import {useGetStatusInstanceMutation} from "../../../apiQuery/apiChat/apiChat";
+import {Navigate} from "react-router-dom";
 
-const Login = () => {
+const Login: FC = () => {
     const LoginForm: LoginInterface = {
         idInstance: '',
         apiKey: ''
     }
     const [loginData,setData] = useState<LoginInterface>(LoginForm);
-    const [isOnline,setIsOnline] = useState<boolean>();
+    const [isOnline,setIsOnline] = useState<boolean | undefined>(undefined);
 
     const [login, res] = useGetStatusInstanceMutation();
 
@@ -24,13 +25,13 @@ const Login = () => {
     const handleForm = async () => {
         localStorage.setItem('idInstance',loginData.idInstance);
         localStorage.setItem('apiKey',loginData.apiKey);
+
         const response: DataResponse | ErrorResponse = await login('');
 
         if('data' in response && response.data.statusInstance === "online"){
             setIsOnline(true)
             localStorage.setItem('online','true')
-        }
-        else{
+        } else{
             setIsOnline(false);
             localStorage.setItem('online','false')
         }
@@ -41,8 +42,9 @@ const Login = () => {
         <div className={style.Form__login}>
             <Input value={loginData.idInstance} onChange={setId} placeholder={'Введите id Instance'}/>
             <Input value={loginData.apiKey} onChange={setApiKey} placeholder={'Введите api key'}/>
-            {(res.isError || !isOnline) && 'Данные не верны или инстанс в офлайне'}
+            {(res.isError || isOnline === false) && 'Данные не верны или инстанс в офлайне'}
             <button onClick={() => handleForm()} >Войти</button>
+            {isOnline && <Navigate to={'/home'}/>}
         </div>
     );
 };

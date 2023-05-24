@@ -3,7 +3,6 @@ import style from "./WindowChat.module.css";
 import WindowField from "./WindowField/WindowField";
 import WindowMessage from "./WindowMessage/WindowMessage";
 
-
 export const WindowChat = () => {
 
 

@@ -12,7 +12,12 @@ export const router = createBrowserRouter([
         element: <Login/>
     },
     {
+        path:'/home',
+        element: <Main/>
+    }
+    ,
+    {
       path: '/messages/:id',
-      element: (Messages())
+      element: <Messages/>
     }
 ])
