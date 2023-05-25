@@ -13,7 +13,7 @@ export const Main = () => {
 
     return (
     <Layout>
-
+        <div></div>
     </Layout>
     );
 };
