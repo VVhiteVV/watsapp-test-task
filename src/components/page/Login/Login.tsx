@@ -1,9 +1,10 @@
 import React, {useState, FC} from 'react';
 import style from "./login.module.css";
 import {DataResponse, ErrorResponse, LoginInterface} from "./LoginInterface";
-import Input from "../../ui/input";
-import {useGetStatusInstanceMutation} from "../../../apiQuery/apiChat/apiChat";
+import Input from "../../ui/input/input";
+import {useGetStatusInstanceMutation} from "../../../store/apiChat/apiChat";
 import {Navigate} from "react-router-dom";
+import Button from "../../ui/button/Button";
 
 const Login: FC = () => {
     const LoginForm: LoginInterface = {
@@ -39,12 +40,14 @@ const Login: FC = () => {
 
 
     return (
-        <div className={style.Form__login}>
-            <Input value={loginData.idInstance} onChange={setId} placeholder={'Введите id Instance'}/>
-            <Input value={loginData.apiKey} onChange={setApiKey} placeholder={'Введите api key'}/>
-            {(res.isError || isOnline === false) && 'Данные не верны или инстанс в офлайне'}
-            <button onClick={() => handleForm()} >Войти</button>
-            {isOnline && <Navigate to={'/home'}/>}
+        <div className={style.Login}>
+            <div className={style.Login__form}>
+                <Input value={loginData.idInstance} onChange={setId} placeholder={'Введите id Instance'}/>
+                <Input value={loginData.apiKey} onChange={setApiKey} placeholder={'Введите api key'}/>
+                {(res.isError || isOnline === false) && 'Данные не верны или инстанс в офлайне'}
+                <Button onClick={handleForm}>Войти</Button>
+                {isOnline && <Navigate to={'/home'}/>}
+            </div>
         </div>
     );
 };

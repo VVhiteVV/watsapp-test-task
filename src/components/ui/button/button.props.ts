@@ -1,6 +1,6 @@
 import {ReactNode} from "react";
 
-export interface WindowItemProps {
-    sender?: string,
+export interface ButtonProps{
+    onClick: () => void,
     children: ReactNode
 }

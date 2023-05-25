@@ -12,13 +12,45 @@
     margin: 0 auto;
 }
 .windowMessage{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     width: 100%;
+    background-color: rgba(0,0,0,0);
     padding: 30px;
     height: 100%;
-    background-color: gray;
  
 }
-.windowTextArea{
+.WindowMessageItem{
+    display: inline-block;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+}
+
+.WindowItemUser {
+    text-align: left;
+    background-color: #a6cad5;
+}
+.WindowItemSender {
+    text-align: right;
+    background-color: #5abace;
+}
+.windowTextArea {
     width: 100%;
-    height: 80px;
+    height: 50px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.windowTextArea:focus {
+    outline: none;
+    border-color: #1890ff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
 }

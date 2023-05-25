@@ -10,7 +10,6 @@ const SideBarItem: FC<SbItemInterface> = (props) => {
             <Link to={`/messages/${props.name}`}>
                 <div className={style.sideBarItemTop}>
                     <div>{props.name}</div>
-                    <div>{props.time}</div>
                 </div>
                 <div className={style.sideBarItemBottom}>
                     {props.message}

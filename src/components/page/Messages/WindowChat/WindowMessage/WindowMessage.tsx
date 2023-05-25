@@ -1,46 +1,37 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import style from "../WindowChat.module.css";
-import {
-    useDeleteQueueMutation,
-    useGetChatHistoryQuery,
-    useGetMessageQuery
-} from "../../../../../apiQuery/apiChat/apiChat";
-import {useParams} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useNavigate, useParams} from "react-router-dom";
+import { useAppSelector} from "../../../../../store/hooks/storeHook";
+import {WindowMessageItem} from "./WindowMessageItem/WindowMessageItem";
 
 export const WindowMessage = () => {
     const params = useParams();
-    const [chatList,setChatList ] = useState<string[]>([]);
-    const [deleteQueue] = useDeleteQueueMutation();
-    const {data: history} =  useGetChatHistoryQuery(params.id,{
-        pollingInterval: 5000
-    });
-    // const {data: getMessage = 0} = useGetMessageQuery(params.id,{
-    //     pollingInterval: 5000
-    // });
+    const navigate = useNavigate()
+    const chatList = useAppSelector(state => state.chatList);
 
-    // useEffect(() => {
-    //
-    //     if(history.length){
-    //         const copyHistory = history.map((item:any) => item.textMessage);
-    //         setChatList(copyHistory)
-    //     }
-    //
-    //
-    //
-    // },[history])
-    // useEffect(() => {
-    //         if(getMessage !== 0 && getMessage !== null) {
-    //             const newMessage = getMessage?.body?.messageData.textMessageData.textMessage;
-    //             setChatList([...chatList,newMessage]);
-    //             console.log(getMessage)
-    //             deleteQueue(getMessage?.receiptId)
-    //         }
-    // },[getMessage])
+    useEffect(() => {
+        if(!chatList.idChat.includes(Number(params.id))){
+            navigate('/home')
+        }
+    },[])
 
     return (
         <div className={style.windowMessage}>
-            {history && history.map((item: any) => <div>{item}</div>)}
+            {chatList.chatData && chatList.chatData.map((item) => {
+                if(item.idSender === Number(params.id)){
+                    return item.chatHistory.map((item) =>
+                        <div style={{
+                            textAlign: item.sender === 'Вы' ? 'left' : 'right'
+                        }} >
+                            <WindowMessageItem sender={item.sender} >
+                                {item.message}
+                            </WindowMessageItem>
+                        </div>
+                    )
+                }
+            })}
+
+
         </div>
     );
 };

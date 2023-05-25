@@ -1,6 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react'
 import {axiosBaseQuery} from "./axiosBaseQuery";
 import {SendMessage} from "./apiChatDto";
+import {getMessage} from "./apiChatDto/getMessageDto";
 
 
 export const chatApi = createApi({
@@ -9,7 +10,7 @@ export const chatApi = createApi({
         baseUrl: 'https://api.green-api.com/',
     }),
     endpoints: (builder) => ({
-        getMessage: builder.query({
+        getMessage: builder.query<getMessage, string | number | boolean >({
             query: () => ({
                 url: `waInstance${localStorage.getItem('idInstance')}/receiveNotification/${localStorage.getItem('apiKey')}`,
                 method:'GET',
@@ -38,7 +39,7 @@ export const chatApi = createApi({
                method: "POST",
                data: {
                    chatId: `${data}@c.us`,
-                   message: ' '
+                   message: 'Привет!'
                }
            })
         }),

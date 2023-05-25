@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import style from "../WindowChat.module.css";
-import {useSendMessageMutation} from "../../../../../apiQuery/apiChat/apiChat";
+import {useSendMessageMutation} from "../../../../../store/apiChat/apiChat";
 import {useParams} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useAppDispatch} from "../../../../../store/hooks/storeHook";
+import {recordSendMessage} from "../../../../../store/storeChat/chatListSlice";
+import Button from "../../../../ui/button/Button";
 
 export const WindowField = () => {
     const [message,setMessage] = useState<string>('');
     const [sendMessage] = useSendMessageMutation();
+    const dispatch = useAppDispatch()
     const params = useParams()
 
     const setMessages = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -19,6 +22,14 @@ export const WindowField = () => {
                 chatId: params.id,
                 message
             });
+            dispatch(recordSendMessage({
+                idSender: Number(params.id),
+                chatHistory: [{
+                    sender: 'Вы',
+                    message
+                }]
+            }))
+            console.log(params.id)
             setMessage('')
         } catch (err) {
             console.log(err);
@@ -26,10 +37,11 @@ export const WindowField = () => {
     }
     return (
         <div className={style.windowField} >
-            <textarea value={message} onChange={(e) => setMessages(e)} className={style.windowTextArea}>
+            <textarea className={style.windowTextArea} value={message} onChange={(e) => setMessages(e)} >
 
             </textarea>
-            <button onClick={() => sendMessages()}>Отправить</button>
+            <Button onClick={sendMessages}>Отправить</Button>
+
         </div>
     );
 };

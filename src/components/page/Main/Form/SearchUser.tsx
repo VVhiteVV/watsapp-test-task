@@ -1,9 +1,15 @@
 import React, {FC, useEffect, useState} from 'react';
-import {useCreateChatMutation} from "../../../../apiQuery/apiChat/apiChat";
+import {useCreateChatMutation} from "../../../../store/apiChat/apiChat";
+import {createChat, recordSendMessage} from "../../../../store/storeChat/chatListSlice";
+import {useAppDispatch} from "../../../../store/hooks/storeHook";
+import style from "./Form.module.css"
+import Button from "../../../ui/button/Button";
+import Input from "../../../ui/input/input";
 
 export const SearchUser: FC = () => {
     const [user,setUser] = useState<string>('');
     const [sendMessage,res] = useCreateChatMutation();
+    const dispatch = useAppDispatch();
 
     const handleUser = (event: React.ChangeEvent<HTMLInputElement>) => {
         setUser(event.target.value);
@@ -11,25 +17,22 @@ export const SearchUser: FC = () => {
 
     const sendForm = async () => {
         try{
-            if(!localStorage.getItem('users')){
-                localStorage.setItem('users', JSON.stringify([user]));
-            }
-            const storage= localStorage.getItem('users');
-            const users = storage !== null ? JSON.parse(storage) : ''
             const response = await sendMessage(user);
+            dispatch(createChat(Number(user)))
 
-            if(!users.includes(user) && res.isError){
-                localStorage.setItem('users', JSON.stringify([...users,user]));
-            }
         }catch (err) {
             console.log(err);
         }
     }
     return (
-        <div>
-            <input type="text" value={user} onChange={handleUser} placeholder={'Введите номер'}/>
-            <button onClick={() => sendForm()} >Поиск</button>
-            {res.isError && 'Возможно такого пользователя нет'}
+        <div className={style.Search}>
+            <div className={style.Search__inner}>
+                <Input type="text" value={user} onChange={handleUser} placeholder={'Введите номер'}/>
+                <Button onClick={sendForm} >Поиск</Button>
+            </div>
+            <div className={style.Search__error}>
+                {res.isError && 'Возможно такого пользователя нет'}
+            </div>
         </div>
     );
 };

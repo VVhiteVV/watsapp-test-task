@@ -1,16 +1,15 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import style from './sideBar.module.css';
 import SideBarItem from "./sideBarItem/SideBarItem";
+import {useAppSelector} from "../../store/hooks/storeHook";
 
 export const SideBarList: FC = () => {
-    const storage = localStorage.getItem('users');
-    const arr = storage !== null ? JSON.parse(storage) : '';
-    const [users,setUsers] = useState<string[]>(arr)
+    const chatItem = useAppSelector(state => state.chatList.idChat);
 
     return (
-        <ul className={style.sidebar}>
-            {arr && users.map(user =>
-                <SideBarItem key={user}  name={user} time={'19:21'}/>
+        <ul className={style.sideBarList}>
+            {chatItem && chatItem.map(user =>
+                <SideBarItem key={user}  name={String(user)}/>
             )}
         </ul>
     );

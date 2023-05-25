@@ -1,0 +1,21 @@
+.Search{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.Search__inner{
+    display: flex;
+}
+.Search input {
+    border-width: 0px 0px 1px 0px;
+    border-radius: 0px;
+    box-shadow: -3px 1px 3px rgb(0 0 0 / 10%);
+}
+.Search input:focus{
+    box-shadow: -3px 1px 3px rgb(0 0 0 / 10%);
+}
+
+.Search__error{
+    color: red;
+    text-align: center;
+}
