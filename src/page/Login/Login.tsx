@@ -1,10 +1,11 @@
 import React, {useState, FC} from 'react';
 import style from "./login.module.css";
-import {DataResponse, ErrorResponse, LoginInterface} from "./LoginInterface";
-import Input from "../../ui/input/input";
-import {useGetStatusInstanceMutation} from "../../../store/apiChat/apiChat";
+import {LoginInterface} from "./LoginInterface";
+import Input from "../../components/ui/input/input";
+import {useGetStatusInstanceMutation} from "../../store/apiChat/apiChat";
 import {Navigate} from "react-router-dom";
-import Button from "../../ui/button/Button";
+import Button from "../../components/ui/button/Button";
+import {DataResponse, ErrorResponse} from "../../store/apiChat/apiChatDto/responseDto";
 
 const Login: FC = () => {
     const LoginForm: LoginInterface = {

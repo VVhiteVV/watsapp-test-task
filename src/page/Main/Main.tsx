@@ -1,6 +1,5 @@
 import React from 'react';
-import Layout from "../../layout/layout";
-import SearchUser from "./Form/SearchUser";
+import Layout from "../../components/layout/layout";
 import {useNavigate} from "react-router-dom";
 
 

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import style from "../WindowChat.module.css";
-import {useSendMessageMutation} from "../../../../../store/apiChat/apiChat";
+import {useSendMessageMutation} from "../../../../store/apiChat/apiChat";
 import {useParams} from "react-router-dom";
-import {useAppDispatch} from "../../../../../store/hooks/storeHook";
-import {recordSendMessage} from "../../../../../store/storeChat/chatListSlice";
-import Button from "../../../../ui/button/Button";
+import {useAppDispatch} from "../../../../store/hooks/storeHook";
+import {recordSendMessage} from "../../../../store/storeChat/chatListSlice";
+import Button from "../../../../components/ui/button/Button";
 
 export const WindowField = () => {
     const [message,setMessage] = useState<string>('');
@@ -18,7 +18,7 @@ export const WindowField = () => {
 
     const sendMessages = async () => {
         try {
-            const response = await sendMessage({
+             await sendMessage({
                 chatId: params.id,
                 message
             });

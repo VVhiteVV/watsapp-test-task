@@ -1,10 +1,10 @@
-import React, {FC, useEffect, useState} from 'react';
-import {useCreateChatMutation} from "../../../../store/apiChat/apiChat";
-import {createChat, recordSendMessage} from "../../../../store/storeChat/chatListSlice";
-import {useAppDispatch} from "../../../../store/hooks/storeHook";
+import React, {FC, useState} from 'react';
+import {useCreateChatMutation} from "../../../store/apiChat/apiChat";
+import {createChat} from "../../../store/storeChat/chatListSlice";
+import {useAppDispatch} from "../../../store/hooks/storeHook";
 import style from "./Form.module.css"
-import Button from "../../../ui/button/Button";
-import Input from "../../../ui/input/input";
+import Button from "../../../components/ui/button/Button";
+import Input from "../../../components/ui/input/input";
 
 export const SearchUser: FC = () => {
     const [user,setUser] = useState<string>('');
@@ -17,7 +17,7 @@ export const SearchUser: FC = () => {
 
     const sendForm = async () => {
         try{
-            const response = await sendMessage(user);
+            await sendMessage(user);
             dispatch(createChat(Number(user)))
 
         }catch (err) {

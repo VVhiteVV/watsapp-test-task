@@ -1,8 +1,6 @@
 import React from 'react';
-import SideBarList from "../../sideBar/SideBarList";
 import WindowChat from "./WindowChat/WindowChat";
-import style from "./messages.module.css";
-import Layout from "../../layout/layout";
+import Layout from "../../components/layout/layout";
 
 export const Messages = () => {
     return (

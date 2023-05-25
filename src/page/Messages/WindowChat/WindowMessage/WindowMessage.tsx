@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import style from "../WindowChat.module.css";
 import {useNavigate, useParams} from "react-router-dom";
-import { useAppSelector} from "../../../../../store/hooks/storeHook";
+import { useAppSelector} from "../../../../store/hooks/storeHook";
 import {WindowMessageItem} from "./WindowMessageItem/WindowMessageItem";
 
 export const WindowMessage = () => {
@@ -13,7 +13,7 @@ export const WindowMessage = () => {
         if(!chatList.idChat.includes(Number(params.id))){
             navigate('/home')
         }
-    },[])
+    },[chatList.idChat])
 
     return (
         <div className={style.windowMessage}>
